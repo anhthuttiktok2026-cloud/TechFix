@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TechFix</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TechFix">
+
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>🔧 TechFix</h1>
+
+<!-- FORM -->
+<div class="form">
+
+<select id="category">
+<option>Windows</option>
+<option>Network</option>
+<option>Office</option>
+<option>Printer</option>
+<option>Server</option>
+</select>
+
+<input id="code" placeholder="Mã lỗi">
+<input id="title" placeholder="Tên lỗi">
+
+<textarea id="symptoms" placeholder="Triệu chứng"></textarea>
+<textarea id="causes" placeholder="Nguyên nhân"></textarea>
+<textarea id="solutions" placeholder="Cách sửa"></textarea>
+<textarea id="notes" placeholder="Ghi chú"></textarea>
+
+<!-- ảnh add lỗi (đúng với app.js: id="image") -->
+<input type="file" id="image" accept="image/*" multiple>
+
+<button class="save-btn" onclick="addError()">
+➕ Lưu lỗi
+</button>
+
+</div>
+
+<hr>
+
+<!-- SEARCH -->
+<input id="searchInput" placeholder="Tìm kiếm">
+<button onclick="searchErrors()">
+🔍 Tìm
+</button>
+
+<hr>
+
+<!-- OCR -->
+<h2>📷 Tra cứu bằng ảnh</h2>
+
+<input type="file" id="ocrImage" accept="image/*">
+
+<button onclick="runOCR()">
+🔍 Quét ảnh
+</button>
+
+<div id="ocrResult"></div>
+
+<hr>
+
+<!-- BACKUP -->
+<button class="backup-btn" onclick="backupData()">
+💾 Backup
+</button>
+
+<label class="restore-btn">
+📂 Phục hồi dữ liệu
+<input type="file" id="restoreFile" onchange="restoreData(event)" hidden>
+</label>
+
+<!-- UI -->
+<div id="counter"></div>
+<div id="errorsList"></div>
+
+<!-- OCR LIB -->
+<script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<!-- APP -->
+<script src="db.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
