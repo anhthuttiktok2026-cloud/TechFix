@@ -1,3 +1,5 @@
+console.log("TechFix V12");
+
 let errors = [];
 let editingId = null;
 let currentImages = [];
