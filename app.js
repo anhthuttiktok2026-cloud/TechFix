@@ -1,4 +1,4 @@
-console.log("TechFix V12");
+console.log("TechFix V13");
 
 let errors = [];
 let editingId = null;
@@ -351,6 +351,11 @@ margin-top:10px;
 }
 
 <button
+onclick="openError(${item.id})">
+📌 Chi tiết
+</button>
+
+<button
 class="edit-btn"
 onclick="editError(${item.id})">
 ✏ Chỉnh sửa
@@ -452,14 +457,63 @@ item.images || [];
 
 function openError(id){
 
-let e = errors.find(x => x.id === id);
+let e =
+errors.find(
+x => x.id === id
+);
 
-alert(`
-MÃ: ${e.code}
-TÊN: ${e.title}
-NGUYÊN NHÂN: ${e.causes}
-CÁCH SỬA: ${e.solutions}
-`);
+let images = "";
+
+if(e.images){
+
+images =
+e.images.map(img => `
+<img
+src="${img}"
+style="
+max-width:100%;
+margin-top:10px;
+border-radius:10px;
+">
+`).join("");
+
+}
+
+document.getElementById(
+"modalBody"
+).innerHTML = `
+
+<h2>${e.code}</h2>
+
+<p><b>Tên lỗi:</b> ${e.title}</p>
+
+<p><b>Triệu chứng:</b><br>
+${e.symptoms}</p>
+
+<p><b>Nguyên nhân:</b><br>
+${e.causes}</p>
+
+<p><b>Cách sửa:</b><br>
+${e.solutions}</p>
+
+<p><b>Ghi chú:</b><br>
+${e.notes}</p>
+
+${images}
+
+`;
+
+document.getElementById(
+"detailModal"
+).style.display = "block";
+
+}
+
+function closeModal(){
+
+document.getElementById(
+"detailModal"
+).style.display = "none";
 
 }
 
